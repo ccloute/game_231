@@ -12,12 +12,6 @@
 
 Graphics::Graphics(const std::string& title, int screen_width, int screen_height)
     : screen_width{screen_width}, screen_height{screen_height} {
-    if (!SDL_Init(SDL_INIT_VIDEO)) {
-        std::string msg{"Unable to initialize SDL Video: "};
-        msg += SDL_GetError();
-        SDL_Quit();
-        throw std::runtime_error(msg);
-    }
     window = SDL_CreateWindow(title.c_str(), screen_width, screen_height, 0);
     if (!window) {
         throw std::runtime_error(SDL_GetError());
@@ -37,7 +31,6 @@ Graphics::~Graphics() {
     if (window) {
         SDL_DestroyWindow(window);
     }
-    SDL_Quit();
 }
 
 

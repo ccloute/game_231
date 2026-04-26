@@ -7,24 +7,16 @@
 #include <algorithm>
 
 Audio::Audio() {
-    // initialize audio
-    if (!SDL_Init(SDL_INIT_AUDIO)) {
-        std::string msg{"Audio::Audio() SDL_Init() failed: "};
-        throw std::runtime_error(msg + SDL_GetError());
-    }
-
     // Open default audio device (Mixer no longer works directly with
     // audio devices, SDL3 manages it now)
     SDL_AudioSpec spec{.format = SDL_AUDIO_F32, .channels = 2, .freq = 48000};
     device = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec);
     if (device == 0) {
-        SDL_Quit();
         std::string msg{"Audio::Audio(): "};
         throw std::runtime_error(msg + SDL_GetError());
     }
     if (!MIX_Init()) {
         SDL_CloseAudioDevice(device);
-        SDL_Quit();
         std::string msg{"Audio::Audio(): "};
         throw std::runtime_error(msg + SDL_GetError());
     }
@@ -37,7 +29,6 @@ Audio::~Audio() {
     MIX_DestroyMixer(mixer);
     SDL_CloseAudioDevice(device);
     MIX_Quit();
-    SDL_Quit();
 }
 
 void Audio::load_sounds(const std::string& filename) {

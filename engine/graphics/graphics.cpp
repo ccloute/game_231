@@ -12,12 +12,6 @@
 
 Graphics::Graphics(const std::string& title, int screen_width, int screen_height)
     : screen_width{screen_width}, screen_height{screen_height} {
-    if (!SDL_Init(SDL_INIT_VIDEO)) {
-        std::string msg{"Unable to initialize SDL Video: "};
-        msg += SDL_GetError();
-        SDL_Quit();
-        throw std::runtime_error(msg);
-    }
     window = SDL_CreateWindow(title.c_str(), screen_width, screen_height, 0);
     if (!window) {
         throw std::runtime_error(SDL_GetError());
@@ -37,7 +31,6 @@ Graphics::~Graphics() {
     if (window) {
         SDL_DestroyWindow(window);
     }
-    SDL_Quit();
 }
 
 
@@ -175,13 +168,22 @@ int Graphics::get_texture_id(const std::filesystem::path& image_filename) {
     } else {  // new image file
         // SDL_Texture* texture = IMG_LoadTexture(renderer, image_filename.c_str());
         SDL_Surface* surface = SDL_LoadPNG(image_filename.string().c_str());
+        if (!surface) {
+            std::cerr << "Warning: Unable to load image " << image_filename
+                      << " (" << SDL_GetError() << "). Using placeholder texture.\n";
+            surface = SDL_CreateSurface(16, 16, SDL_PIXELFORMAT_RGBA32);
+            if (!surface) {
+                throw std::runtime_error(SDL_GetError());
+            }
+            SDL_FillSurfaceRect(surface, nullptr, SDL_MapSurfaceRGBA(surface, 255, 0, 255, 255));
+        }
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
         SDL_DestroySurface(surface);
-        SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
-        std::cout << "New: " << image_filename << ": " << texture << "\n";
         if (!texture) {
             throw std::runtime_error(SDL_GetError());
         }
+        SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
+        std::cout << "New: " << image_filename << ": " << texture << "\n";
 
         // register new texture
         int texture_id = static_cast<int>(textures.size());

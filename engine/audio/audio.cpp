@@ -5,26 +5,19 @@
 #include <fstream>
 #include <stdexcept>
 #include <algorithm>
+#include <iostream>
 
 Audio::Audio() {
-    // initialize audio
-    if (!SDL_Init(SDL_INIT_AUDIO)) {
-        std::string msg{"Audio::Audio() SDL_Init() failed: "};
-        throw std::runtime_error(msg + SDL_GetError());
-    }
-
     // Open default audio device (Mixer no longer works directly with
     // audio devices, SDL3 manages it now)
     SDL_AudioSpec spec{.format = SDL_AUDIO_F32, .channels = 2, .freq = 48000};
     device = SDL_OpenAudioDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec);
     if (device == 0) {
-        SDL_Quit();
         std::string msg{"Audio::Audio(): "};
         throw std::runtime_error(msg + SDL_GetError());
     }
     if (!MIX_Init()) {
         SDL_CloseAudioDevice(device);
-        SDL_Quit();
         std::string msg{"Audio::Audio(): "};
         throw std::runtime_error(msg + SDL_GetError());
     }
@@ -37,7 +30,6 @@ Audio::~Audio() {
     MIX_DestroyMixer(mixer);
     SDL_CloseAudioDevice(device);
     MIX_Quit();
-    SDL_Quit();
 }
 
 void Audio::load_sounds(const std::string& filename) {
@@ -58,8 +50,9 @@ void Audio::load_sounds(const std::string& filename) {
         std::string full_path = parent_path + file;
         MIX_Audio* effect = MIX_LoadAudio(mixer, full_path.c_str(), true);
         if (!effect) {
-            std::string msg{SDL_GetError()};
-            throw std::runtime_error(msg + "\nUnable to load sound from " + full_path);
+            std::cerr << "Warning: Unable to load sound from " << full_path
+                      << " (" << SDL_GetError() << ")\n";
+            continue;
         }
         sounds[name] = effect;
     }
@@ -68,7 +61,8 @@ void Audio::load_sounds(const std::string& filename) {
 void Audio::play_sound(const std::string& sound_name, bool loop_forever_in_background) {
     auto sound = sounds.find(sound_name);
     if (sound == sounds.end()) {
-        throw std::runtime_error("Cannot find sound " + sound_name);
+        std::cerr << "Warning: Cannot find sound " << sound_name << '\n';
+        return;
     }
 
     if (loop_forever_in_background) {

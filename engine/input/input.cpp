@@ -1,19 +1,10 @@
 #include "input.h"
 #include <SDL3/SDL.h>
-#include <stdexcept>
 
 Input::Input()
-    :mouse_x{-1}, mouse_y{-1} {
-    if (!SDL_Init(SDL_INIT_EVENTS)) {
-        std::string msg{"Unable to initialize SDL Events: "};
-        msg += SDL_GetError();
-        SDL_Quit();
-        throw std::runtime_error(msg);
-    }
-}
+    :mouse_x{-1}, mouse_y{-1} {}
 
 Input::~Input() {
-    SDL_Quit();
 }
 
 void Input::set_last_keypress(const std::string& key) {

@@ -1,0 +1,56 @@
+tiles.png
+floor_nice 208 0 16 16
+floor_sunken 208 16 16 16
+floor_cracked_1 224 0 16 16
+floor_cracked_2 224 16 16 16
+
+floor_broken_top_left 128 80 16 16
+floor_broken_top_center 144 80 16 16
+floor_broken_top_right 160 80 16 16
+floor_broken_center_left 128 96 16 16
+floor_broken_center_center 144 96 16 16
+floor_broken_center_right 160 96 16 16
+floor_broken_bottom_left 128 112 16 16
+floor_broken_bottom_center 144 112 16 16
+floor_broken_bottom_right 160 112 16 16
+
+rocks_many 224 32 16 16
+rocks_few 240 32 16 16
+
+wall_pillar 192 16 16 16
+
+wall_right 160 16 16 16
+wall_up 160 48 16 16
+wall_left 144 16 16 16
+wall_down 144 32 16 16
+
+wall_right_up 128 48 16 16
+wall_up_left 176 48 16 16
+wall_left_down 176 0 16 16
+wall_right_down 128 0 16 16
+
+wall_right_left_1 160 0 16 16
+wall_right_left_2 192 32 16 16
+wall_right_left_3 208 32 16 16
+wall_up_down_1 128 32 16 16
+wall_up_down_2 176 32 16 16
+wall_up_down_3 192 0 16 16
+
+wall_right_up_left 144 48 16 16
+wall_up_left_down 176 16 16 16
+wall_right_left_down 160 32 16 16
+wall_right_up_down 128 16 16 16
+
+wall_right_up_left_down 144 0 16 16
+
+wall_destroyed 192 48 48 16
+wall_destroyed_left 192 48 16 16
+wall_destroyed_center 208 48 16 16
+wall_destroyed_right 224 48 16 16
+wall_arch 208 64 48 32
+
+door_horizontal 16 128 16 16
+door_vertical 0 128 16 32
+
+torch 0 208 16 16 5
+

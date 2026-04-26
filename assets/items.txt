@@ -1,0 +1,40 @@
+objects.png
+
+knife 293 18 6 13
+
+spear 293 177 6 30
+
+bow 325 180 7 25
+arrow 308 186 7 21
+
+sword 323 26 10 21
+sword_rusty 307 26 10 21
+sword_red_gem 339 26 10 21
+sword_big 322 81 12 30
+sword_golden 288 144 16 32
+sword_golden_big 304 144 16 32
+
+hammer 307 55 10 24
+hammer_big 291 42 10 37
+spiked_club 323 57 10 22
+mace 339 55 10 24
+
+axe 341 90 9 21
+cleaver 310 124 8 19
+
+staff_red 324 145 8 30
+staff_green 340 145 8 30
+
+potion_red 288 240 16 16
+potion_blue 304 240 16 16
+potion_green 320 240 16 16
+potion_yellow 336 240 16 16
+
+potion_large_red 288 224 16 16
+potion_large_blue 304 224 16 16
+potion_large_green 320 224 16 16
+potion_large_yellow 336 224 16 16
+
+heart_full 288 256 16 16
+heart_half 304 256 16 16
+heart_empty 320 256 16 16

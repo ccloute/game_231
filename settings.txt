@@ -1,0 +1,15 @@
+title CSC-231-Game
+screen_width 1280
+screen_height 720
+tile_size 16
+zoom 3
+tiles assets/tiles.txt
+heroes assets/heroes.txt
+monsters assets/monsters.txt
+items assets/items.txt
+effects assets/effects.txt
+sounds assets/sounds.txt
+font assets/font.txt
+map_width 39
+map_height 21
+room_placement_attempts 200

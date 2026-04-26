@@ -1,0 +1,8 @@
+effects.png
+
+gas 0 0 32 32 10
+magic 0 32 32 32 10
+explosion 0 64 32 32 10
+fire 0 96 32 32 6
+lightning 0 128 32 162 5
+

@@ -1,0 +1,23 @@
+objects.png
+
+zombie_small 368 16 16 16 4
+zombie 368 144 16 16 4
+zombie_big 16 270 32 34 4
+
+muddy 368 112 16 16 4
+
+skeleton 368 80 16 16 4
+
+orc 368 204 16 20 4
+orc_masked 368 172 16 20 4
+orc_shaman 368 236 16 20 4
+
+goblin 368 32 16 16 4
+
+ogre  16 320 32 32 4
+
+necromancer 368 268 16 20 4
+
+demon_tiny 368 48 16 16 4
+demon 368 328 16 24 4
+demon_big  16 364 32 36 4

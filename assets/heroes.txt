@@ -1,0 +1,8 @@
+objects.png
+
+none 16 400 16 16 1
+
+elf 128 0 16 32 4
+knight 128 64 16 32 4
+wizard 128 160 16 32 4
+dragon 128 224 16 32 4

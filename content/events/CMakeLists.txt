@@ -1,6 +1,8 @@
 add_library(events
   display_damage.h display_damage.cpp
   updatefov.h updatefov.cpp
+        animation.cpp
+        animation.h
 )
 
 target_include_directories(events PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

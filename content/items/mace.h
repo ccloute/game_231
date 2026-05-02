@@ -5,9 +5,9 @@
 class Engine;
 class Entity;
 
-class Spear : public Item {
+class Mace : public Item {
 public:
-    Spear(int damage);
+    Mace(int damage);
 
     void use(Engine& engine, Entity& attacker, Entity& defender) override;
 

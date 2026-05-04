@@ -7,6 +7,7 @@ add_library(actions
         closedoor.h closedoor.cpp
         wander.h wander.cpp
         attack.h attack.cpp
+        dart_path.h dart_path.cpp
 )
 
 target_include_directories(actions PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

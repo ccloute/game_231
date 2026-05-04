@@ -5,9 +5,12 @@
 #include "engine.h"
 #include "entity.h"
 #include "move.h"
+#include "poison_dart.h"
+#include "potion.h"
 #include "rest.h"
 #include "spear.h"
 #include "sword.h"
+#include "use.h"
 #include "vec.h"
 
 #include <cctype>
@@ -17,9 +20,11 @@ namespace Heroes {
 
 namespace {
 
-void add_default_weapons(std::shared_ptr<Entity> hero) {
+void add_default_hero_items(std::shared_ptr<Entity> hero) {
     hero->add_to_inventory(std::make_shared<Spear>(4));
     hero->add_to_inventory(std::make_shared<Sword>(3));
+    hero->add_to_inventory(std::make_shared<Potion>(4));
+    hero->add_to_inventory(std::make_shared<PoisonDart>());
 }
 
 }
@@ -27,7 +32,14 @@ void add_default_weapons(std::shared_ptr<Entity> hero) {
 void make_knight(std::shared_ptr<Entity> hero) {
     hero->set_sprite("knight");
     hero->set_max_health(10);
-    add_default_weapons(hero);
+    add_default_hero_items(hero);
+    hero->behavior = behavior;
+}
+
+void make_wizard(std::shared_ptr<Entity> hero) {
+    hero->set_sprite("wizard");
+    hero->set_max_health(10);
+    add_default_hero_items(hero);
     hero->behavior = behavior;
 }
 
@@ -50,6 +62,9 @@ std::unique_ptr<Action> behavior(Engine& engine, Entity& entity) {
     }
     if (key == "C") {
         return std::make_unique<CloseDoor>();
+    }
+    if (key == "F") {
+        return std::make_unique<Use>();
     }
     if (!key.empty() && std::isdigit(static_cast<unsigned char>(key.at(0)))) {
         entity.select_item(std::stoi(key));

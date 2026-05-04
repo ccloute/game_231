@@ -4,6 +4,8 @@ add_library(events
         animation.cpp
         animation.h
         hit.h hit.cpp
+        poison_debuff.h poison_debuff.cpp
+        poison_dart_projectile.h poison_dart_projectile.cpp
         die.h die.cpp
         thrust.h thrust.cpp
 )
